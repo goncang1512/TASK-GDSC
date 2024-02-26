@@ -5,6 +5,7 @@ import { FaTrash, FaStar } from "react-icons/fa";
 import { IoMdBrush } from "react-icons/io";
 import ModalEditTugas from "../layouts/ModalEdit";
 import { IoSearchSharp } from "react-icons/io5";
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 export default function Home() {
   const {
@@ -44,13 +45,13 @@ export default function Home() {
             }}
           />
           <button type="submit">
-            <IoSearchSharp size={20} />
+            <IoSearchSharp size={20} className="text-white" />
           </button>
         </form>
       </div>
       <div className="w-full px-3 pt-3 text-start">
         <h1 className="text-2xl font-bold text-white">
-          All Task ({myTask.length} task)
+          All Task ({myTask.length} tugas)
         </h1>
       </div>
       <section className="flex flex-col gap-3 p-3 ">
@@ -89,12 +90,12 @@ export default function Home() {
               >
                 <div className="flex flex-col h-full gap-5">
                   <div className="gap-2">
-                    <h2 className="font-semibold">{task.mataKuliah}</h2>
+                    <h2 className="font-bold">{task.mataKuliah}</h2>
                     <p>{task.deskripsi}</p>
                   </div>
                   <p>{timeIDN(task.deadLine)}</p>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="items-center hidden gap-2 md:flex">
                   <p
                     className={`${classStatus} flex items-center py-1 px-2 rounded-lg text-center`}
                   >
@@ -124,6 +125,13 @@ export default function Home() {
                     <IoMdBrush size={25} />
                   </button>
                 </div>
+                <div className="flex md:hidden">
+                  <DropDown
+                    classStatus={classStatus}
+                    statusTask={statusTask}
+                    task={task}
+                  />
+                </div>
               </div>
             );
           })
@@ -133,3 +141,54 @@ export default function Home() {
     </main>
   );
 }
+
+export const DropDown = ({ classStatus, statusTask, task }) => {
+  const { udpateTugasImportant, deleteTugas, setSelectTugas } =
+    useContext(TugasContext);
+  return (
+    <div className="dropdown dropdown-end">
+      <div tabIndex={0} role="button" className="">
+        <BsThreeDotsVertical size={25} />
+      </div>
+      <ul
+        tabIndex={0}
+        className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 text-black"
+      >
+        <div>
+          <p
+            className={`${classStatus} flex items-center py-1 px-2 rounded-lg text-center`}
+          >
+            {statusTask}
+          </p>
+        </div>
+        <li>
+          <button
+            onClick={() => udpateTugasImportant(task?.id, !task?.important)}
+            className="text-black"
+          >
+            <FaStar
+              size={18}
+              className={task?.important ? "text-yellow-500" : "text-black"}
+            />
+            important
+          </button>
+        </li>
+        <li>
+          <button onClick={() => deleteTugas(task.id)}>
+            <FaTrash size={18} /> hapus
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => {
+              document.getElementById("edit_tugas").showModal();
+              setSelectTugas(task.id);
+            }}
+          >
+            <IoMdBrush size={25} /> edit
+          </button>
+        </li>
+      </ul>
+    </div>
+  );
+};

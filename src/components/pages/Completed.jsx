@@ -6,6 +6,7 @@ import { IoMdBrush } from "react-icons/io";
 import ModalEditTugas from "../layouts/ModalEdit";
 import { useParams } from "react-router-dom";
 import { IoSearchSharp } from "react-icons/io5";
+import { DropDown } from "./Home";
 
 export default function Completed() {
   const params = useParams();
@@ -26,10 +27,13 @@ export default function Completed() {
   }, []);
 
   let penting;
+  let task;
   if (params.status === "important") {
     penting = myTask.filter((task) => task.important);
+    task = "important";
   } else {
     penting = myTask.filter((task) => task.status === `${params.status}`);
+    task = params.status;
   }
 
   return (
@@ -53,13 +57,13 @@ export default function Completed() {
             }}
           />
           <button type="submit">
-            <IoSearchSharp size={20} />
+            <IoSearchSharp size={20} className="text-white" />
           </button>
         </form>
       </div>
       <div className="w-full px-3 pt-3 text-start">
         <h1 className="text-2xl font-bold text-white">
-          All Task ({penting.length} task)
+          {task} task ({penting.length} tugas)
         </h1>
       </div>
       <section className="flex flex-col gap-3 p-3">
@@ -95,12 +99,12 @@ export default function Completed() {
               >
                 <div className="flex flex-col h-full gap-4">
                   <div className="gap-2">
-                    <h2>{task.mataKuliah}</h2>
+                    <h2 className="font-bold">{task.mataKuliah}</h2>
                     <p>{task.deskripsi}</p>
                   </div>
                   <p>{timeIDN(task.deadLine)}</p>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="items-center hidden gap-2 md:flex">
                   <p
                     className={`${classStatus} flex items-center py-1 px-2 rounded-lg text-center`}
                   >
@@ -129,6 +133,13 @@ export default function Completed() {
                   >
                     <IoMdBrush size={25} />
                   </button>
+                </div>
+                <div className="flex md:hidden">
+                  <DropDown
+                    classStatus={classStatus}
+                    statusTask={statusTask}
+                    task={task}
+                  />
                 </div>
               </div>
             );
