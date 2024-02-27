@@ -7,6 +7,7 @@ import ModalEditTugas from "../layouts/ModalEdit";
 import { useParams } from "react-router-dom";
 import { IoSearchSharp } from "react-icons/io5";
 import { DropDown } from "./Home";
+import ReadMoreLess from "../elements/ReadMore";
 
 export default function Completed() {
   const params = useParams();
@@ -100,7 +101,7 @@ export default function Completed() {
                 <div className="flex flex-col h-full gap-4">
                   <div className="gap-2">
                     <h2 className="font-bold">{task.mataKuliah}</h2>
-                    <p>{task.deskripsi}</p>
+                    <ReadMoreLess text={task.deskripsi} maxLength={[90, 150]} />
                   </div>
                   <p>{timeIDN(task.deadLine)}</p>
                 </div>

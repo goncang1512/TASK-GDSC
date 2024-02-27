@@ -6,6 +6,7 @@ import { IoMdBrush } from "react-icons/io";
 import ModalEditTugas from "../layouts/ModalEdit";
 import { IoSearchSharp } from "react-icons/io5";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import ReadMoreLess from "../elements/ReadMore";
 
 export default function Home() {
   const {
@@ -91,7 +92,7 @@ export default function Home() {
                 <div className="flex flex-col h-full gap-5">
                   <div className="gap-2">
                     <h2 className="font-bold">{task.mataKuliah}</h2>
-                    <p>{task.deskripsi}</p>
+                    <ReadMoreLess text={task.deskripsi} maxLength={[90, 150]} />
                   </div>
                   <p>{timeIDN(task.deadLine)}</p>
                 </div>

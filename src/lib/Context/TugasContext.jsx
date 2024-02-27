@@ -25,6 +25,8 @@ export default function TugasContextProvider({ children }) {
   const [selectTugas, setSelectTugas] = useState("");
   const [seeNavbar, setSeeNavbar] = useState(false);
   const [keyword, setKeyword] = useState("");
+  const [lineClamp, setLineClamp] = useState(false);
+  const [idClamp, setIdClamp] = useState("");
 
   const addTugas = useCallback(
     async (body) => {
@@ -201,6 +203,10 @@ export default function TugasContextProvider({ children }) {
         keyword,
         setKeyword,
         byContent,
+        lineClamp,
+        setLineClamp,
+        idClamp,
+        setIdClamp,
       }}
     >
       {children}

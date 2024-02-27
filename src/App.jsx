@@ -6,7 +6,6 @@ import "./App.css";
 
 function App() {
   const location = useLocation();
-  console.log("URL", location);
   let classUrl = "";
   if (location.pathname === "/tugas") {
     classUrl = "overflow-hidden";
