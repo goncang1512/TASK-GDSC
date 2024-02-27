@@ -55,7 +55,7 @@ export default function Home() {
         </h1>
       </div>
       <section className="flex flex-col gap-3 p-3 ">
-        {myTask === 0 ? (
+        {myTask.length === 0 ? (
           <div className="flex items-center justify-center w-full h-full overflow-hidden">
             <p className="text-red-500">Tidak ada content</p>
           </div>
