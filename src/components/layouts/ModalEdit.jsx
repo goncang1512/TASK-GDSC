@@ -35,6 +35,7 @@ const ModalEditTugas = ({ idTugas }) => {
           <InputTugas
             width={true}
             placeholder="mata kuliah"
+            htmlFor="matakuliah"
             type="text"
             value={updateTugas?.mataKuliah}
             onChange={(e) =>
@@ -45,7 +46,8 @@ const ModalEditTugas = ({ idTugas }) => {
           </InputTugas>
           <InputTugas
             width={true}
-            placeholder="nama tugas"
+            placeholder="deadline"
+            htmlFor="deadline"
             type="date"
             value={updateTugas?.deadLine}
             onChange={(e) =>
@@ -65,6 +67,7 @@ const ModalEditTugas = ({ idTugas }) => {
           <AreaInput
             width={true}
             placeholder="deskripsi"
+            htmlFor="deskripsi"
             type="text"
             value={updateTugas?.deskripsi}
             onChange={(e) =>

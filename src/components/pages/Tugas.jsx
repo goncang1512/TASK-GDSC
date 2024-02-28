@@ -17,6 +17,7 @@ export default function Tugas() {
           placeholder="mata kuliah"
           type="text"
           value={dataTugas.mataKuliah}
+          htmlFor="matakuliah"
           onChange={(e) =>
             setDataTugas({ ...dataTugas, mataKuliah: e.target.value })
           }
@@ -24,8 +25,9 @@ export default function Tugas() {
           Mata Kuliah
         </InputTugas>
         <InputTugas
-          placeholder="nama tugas"
+          placeholder="deadline"
           type="date"
+          htmlFor="deadline"
           value={dataTugas.deadLine}
           onChange={(e) =>
             setDataTugas({ ...dataTugas, deadLine: e.target.value })
@@ -36,6 +38,7 @@ export default function Tugas() {
         <AreaInput
           placeholder="deskripsi"
           type="text"
+          htmlFor="deskripsi"
           value={dataTugas.deskripsi}
           onChange={(e) =>
             setDataTugas({ ...dataTugas, deskripsi: e.target.value })
