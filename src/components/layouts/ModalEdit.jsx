@@ -12,6 +12,7 @@ const ModalEditTugas = ({ idTugas }) => {
   useEffect(() => {
     if (dataById) {
       setUpdateTugas({
+        id: dataById.id || "",
         mataKuliah: dataById.mataKuliah || "",
         deadLine: dataById.deadLine || "",
         deskripsi: dataById.deskripsi || "",
