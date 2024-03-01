@@ -104,15 +104,13 @@ export default function TugasContextProvider({ children }) {
   const udpateTugasId = useCallback((id, body) => {
     try {
       const tasks = JSON.parse(localStorage.getItem("listTugas"));
-      const result = tasks.sort(
-        (a, b) => new Date(a.deadLine) - new Date(b.deadLine)
-      );
-      const index = tasks.findIndex((task) => task.id === id);
+      const result = sortDataTugas(tasks);
+      const index = result.findIndex((task) => task.id === id);
       if (index !== -1) {
-        tasks[index] = body;
+        result[index] = body;
         localStorage.setItem("listTugas", JSON.stringify(result));
 
-        setMyTask(tasks);
+        setMyTask(result);
         document.getElementById("edit_tugas").close();
       } else {
         console.log("Tugas dengan ID yang diberikan tidak ditemukan.");
@@ -125,13 +123,17 @@ export default function TugasContextProvider({ children }) {
   const udpateTugasImportant = useCallback((id, important) => {
     try {
       const tasks = JSON.parse(localStorage.getItem("listTugas"));
+      if (!tasks) {
+        console.log("Tidak ada tugas yang ditemukan di localStorage.");
+        return;
+      }
       const result = sortDataTugas(tasks);
-      const index = tasks.findIndex((task) => task.id === id);
+      const index = result.findIndex((task) => task.id === id);
 
       if (index !== -1) {
-        tasks[index].important = important;
+        result[index].important = important;
         localStorage.setItem("listTugas", JSON.stringify(result));
-        setMyTask(tasks);
+        setMyTask(result);
       } else {
         console.log("Tugas dengan ID yang diberikan tidak ditemukan.");
       }
