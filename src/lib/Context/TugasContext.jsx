@@ -1,4 +1,5 @@
 import { createContext, useCallback, useState } from "react";
+import { sortDataTugas } from "../utils/sortData";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
@@ -64,27 +65,12 @@ export default function TugasContextProvider({ children }) {
     [dataTugas]
   );
 
-  const getTugas = useCallback(() => {
+  const getTugas = useCallback(async () => {
     try {
-      const response = JSON.parse(localStorage.getItem("listTugas"));
-      const sortedTasks = response.sort((a, b) => {
-        if (a.status === "completed" && b.status !== "completed") {
-          return 1;
-        }
-        if (b.status === "completed" && a.status !== "completed") {
-          return -1;
-        }
-        return new Date(a.deadLine) - new Date(b.deadLine);
-      });
+      const response = await JSON.parse(localStorage.getItem("listTugas"));
 
-      const completedTasks = sortedTasks.filter(
-        (task) => task.status === "completed"
-      );
-      const incompletedTasks = sortedTasks.filter(
-        (task) => task.status !== "completed"
-      );
+      const result = await sortDataTugas(response);
 
-      const result = [...incompletedTasks, ...completedTasks];
       setMyTask(result);
     } catch (error) {
       console.log(error);
@@ -139,10 +125,8 @@ export default function TugasContextProvider({ children }) {
   const udpateTugasImportant = useCallback((id, important) => {
     try {
       const tasks = JSON.parse(localStorage.getItem("listTugas"));
+      const result = sortDataTugas(tasks);
       const index = tasks.findIndex((task) => task.id === id);
-      const result = tasks.sort(
-        (a, b) => new Date(a.deadLine) - new Date(b.deadLine)
-      );
 
       if (index !== -1) {
         tasks[index].important = important;
@@ -164,10 +148,8 @@ export default function TugasContextProvider({ children }) {
           task.mataKuliah.toLowerCase().includes(keyword.toLowerCase()) ||
           task.deskripsi.toLowerCase().includes(keyword.toLowerCase())
       );
-      const sortedResult = filteredResult.sort(
-        (a, b) => new Date(a.deadLine) - new Date(b.deadLine)
-      );
-      setMyTask(sortedResult);
+      const result = sortDataTugas(filteredResult);
+      setMyTask(result);
     } catch (error) {
       console.log(error);
     }
@@ -187,10 +169,9 @@ export default function TugasContextProvider({ children }) {
           task.mataKuliah.toLowerCase().includes(keyword.toLowerCase()) ||
           task.deskripsi.toLowerCase().includes(keyword.toLowerCase())
       );
-      const sortedResult = filteredResult.sort(
-        (a, b) => new Date(a.deadLine) - new Date(b.deadLine)
-      );
-      setMyTask(sortedResult);
+
+      const result = sortDataTugas(filteredResult);
+      setMyTask(result);
     } catch (error) {
       console.log(error);
     }
