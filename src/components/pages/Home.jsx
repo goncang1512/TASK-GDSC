@@ -7,6 +7,7 @@ import ModalEditTugas from "../layouts/ModalEdit";
 import { IoSearchSharp } from "react-icons/io5";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import ReadMoreLess from "../elements/ReadMore";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const {
@@ -58,7 +59,14 @@ export default function Home() {
       <section className="flex flex-col gap-3 p-3 ">
         {myTask.length === 0 ? (
           <div className="flex items-center justify-center w-full h-full overflow-hidden">
-            <p className="text-red-500">Tidak ada content</p>
+            <div className="flex items-center justify-center w-full md:w-auto">
+              <Link
+                to={"/tugas"}
+                className="w-full px-3 py-3 text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+              >
+                Tugas Baru
+              </Link>
+            </div>
           </div>
         ) : (
           myTask &&

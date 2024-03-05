@@ -5,9 +5,9 @@ import { TugasContext } from "../../lib/Context/TugasContext";
 export default function Tugas() {
   const { dataTugas, setDataTugas, addTugas } = useContext(TugasContext);
   return (
-    <main className="flex items-center justify-center w-full h-screen">
+    <main className="flex items-center justify-center w-full h-screen px-3 md:px-0">
       <form
-        className="flex flex-col gap-2 p-5 bg-white border rounded-md shadow-[35px_60px_15px_rgba(5,5,5,0.3)]"
+        className="flex flex-col gap-2 p-5 md:w-96 w-full bg-white border rounded-md shadow-[35px_60px_15px_rgba(5,5,5,0.3)]"
         onSubmit={(e) => {
           e.preventDefault();
           addTugas(dataTugas);
@@ -46,7 +46,10 @@ export default function Tugas() {
         >
           Deskripsi
         </AreaInput>
-        <button type="submit" className="py-2 border rounded-lg">
+        <button
+          type="submit"
+          className="py-2 border rounded-lg hover:bg-gray-300"
+        >
           Tambah Tugas
         </button>
       </form>

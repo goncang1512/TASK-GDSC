@@ -4,11 +4,10 @@ export default function InputTugas({
   placeholder,
   onChange,
   value,
-  width,
   htmlFor,
 }) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col w-full gap-2">
       <label htmlFor={htmlFor}>{children}</label>
       <input
         type={type}
@@ -16,9 +15,7 @@ export default function InputTugas({
         onChange={onChange}
         value={value}
         id={htmlFor}
-        className={`px-3 py-2 border outline-none rounded-lg ${
-          width ? "w-full" : "w-72"
-        }`}
+        className={`px-3 py-2 border outline-none rounded-lg w-full`}
         required
       />
     </div>
@@ -31,11 +28,10 @@ export function AreaInput({
   placeholder,
   onChange,
   value,
-  width,
   htmlFor,
 }) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col w-full">
       <label htmlFor={htmlFor}>{children}</label>
       <textarea
         type={type}
@@ -43,9 +39,7 @@ export function AreaInput({
         onChange={onChange}
         value={value}
         id={htmlFor}
-        className={`px-3 py-2 border outline-none rounded-lg ${
-          width ? "w-full" : "w-72"
-        }`}
+        className={`px-3 py-2 border outline-none rounded-lg w-full`}
         required
       ></textarea>
     </div>
