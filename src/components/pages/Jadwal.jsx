@@ -31,10 +31,11 @@ export default function Jadwal() {
                 <thead>
                   <tr className="text-white">
                     <th className="text-center bg-gray-500 border" colSpan={2}>
-                      <div className="flex items-center justify-center gap-3">
-                        <p className="text-xl">{jadwal.hari}</p>
+                      <div className="flex items-center justify-center">
+                        <p className="w-full text-xl text-end">{jadwal.hari}</p>
                         <button
                           type="button"
+                          className="flex justify-end w-[70%]"
                           onClick={() => deleteRoster(jadwal.id)}
                         >
                           <FaTrash size={15} />
