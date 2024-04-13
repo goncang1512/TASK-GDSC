@@ -12,8 +12,8 @@ export default function Jadwal() {
   }, []);
 
   return (
-    <div className="relative h-screen text-white">
-      <div className="absolute flex items-center justify-center bg-blue-500 rounded-full right-3 bottom-3 size-14">
+    <div className="h-auto text-white ">
+      <div className="absolute z-40 flex items-center justify-center bg-blue-500 rounded-full right-10 bottom-10 size-14">
         <button
           className="flex items-center justify-center text-5xl"
           onClick={() =>
@@ -27,7 +27,7 @@ export default function Jadwal() {
         {listJadwal &&
           listJadwal.map((jadwal) => {
             return (
-              <table className="table w-[30.7%]" key={jadwal.id}>
+              <table className="table md:w-[30.7%] w-full" key={jadwal.id}>
                 <thead>
                   <tr className="text-white">
                     <th className="text-center bg-gray-500 border" colSpan={2}>
