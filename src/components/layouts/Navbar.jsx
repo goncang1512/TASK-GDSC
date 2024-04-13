@@ -10,7 +10,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="fixed top-0 right-0 flex items-center justify-between w-full px-3 text-white bg-gray-900 h-14 md:hidden">
+    <div className="fixed z-50 top-0 right-0 flex items-center justify-between w-full px-3 text-white bg-gray-900 h-14 md:hidden">
       <h1 className="font-semibold">MY TASK</h1>
       <div className={`${seeNavbar === true && "text-red-500"}`}>
         <label className="swap swap-rotate">
