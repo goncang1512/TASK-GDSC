@@ -1,5 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
 import TugasContextProvider from "./lib/Context/TugasContext";
+import JadwalContextProvider from "./lib/Context/JadwalContext";
 import SideBar from "./components/layouts/SideBar";
 import Navbar from "./components/layouts/Navbar";
 import "./App.css";
@@ -16,13 +17,15 @@ function App() {
   return (
     <>
       <TugasContextProvider>
-        <SideBar />
-        <Navbar />
-        <div
-          className={`md:ml-60 ml-0 md:pr-[20rem] pr-0 h-screen bg-gray-800 ${classUrl} md:pt-0 pt-14`}
-        >
-          <Outlet />
-        </div>
+        <JadwalContextProvider>
+          <SideBar />
+          <Navbar />
+          <div
+            className={`md:ml-60 ml-0 md:pr-[20rem] pr-0 h-screen bg-gray-800 ${classUrl} md:pt-0 pt-14`}
+          >
+            <Outlet />
+          </div>
+        </JadwalContextProvider>
       </TugasContextProvider>
     </>
   );

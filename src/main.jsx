@@ -7,6 +7,7 @@ import "./index.css";
 import Home from "./components/pages/Home.jsx";
 import Tugas from "./components/pages/Tugas.jsx";
 import Completed from "./components/pages/Completed.jsx";
+import Jadwal from "./components/pages/Jadwal.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/mytask/:status",
         element: <Completed />,
+      },
+      {
+        path: "/jadwal",
+        element: <Jadwal />,
       },
     ],
   },

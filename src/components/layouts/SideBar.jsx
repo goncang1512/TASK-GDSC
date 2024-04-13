@@ -1,19 +1,15 @@
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { TimeClock } from "../../lib/utils/parseTime";
 import { useContext } from "react";
 import { TugasContext } from "../../lib/Context/TugasContext";
 
 export default function SideBar() {
   const { seeNavbar } = useContext(TugasContext);
-  const params = useParams();
   const pathname = useLocation();
-
-  console.log(params);
-  console.log("pathname", pathname);
 
   return (
     <div
-      className={`fixed left-0 flex flex-col justify-between h-screen text-white bg-gray-900 border-r border-gray-800 w-60 duration-300 ease-in-out ${
+      className={`fixed left-0 flex flex-col justify-between h-screen text-white bg-gray-900 border-r border-gray-800 w-60 duration-300 ease-in-out z-50 ${
         seeNavbar ? "translate-x-[0]" : "translate-x-[-100%] md:translate-x-[0]"
       } `}
     >
@@ -69,6 +65,14 @@ export default function SideBar() {
             }`}
           >
             Works
+          </Link>
+          <Link
+            to={"/jadwal"}
+            className={`text-Start px-3 py-2 rounded-lg hover:bg-gray-800 ${
+              pathname.pathname === `/jadwal` && "bg-gray-800"
+            }`}
+          >
+            Jadwal
           </Link>
         </div>
       </div>
